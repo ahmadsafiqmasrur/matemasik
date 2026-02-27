@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatemASIK - Petualangan Matematika Anak</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <img src="logobuatweb.png" alt="Logo MatemASIK">
+            <h1>🧮 MatemASIK</h1>
+            <p style="margin-bottom: 24px;">KKN-T Kelompok 10 Dusun Ngireng ireng Universitas Alma Ata</p>
+        </header>
+
+        <!-- Home Screen -->
+        <section id="home-screen" class="screen active">
+            <div class="card glass">
+                <h2 style="font-weight: 800; margin-bottom: 10px;">Ayo Belajar Menghitung!</h2>
+                <p style="margin-bottom: 30px; opacity: 0.8;">Pilih Sesuai Kelas Kamu Ya!</p>
+                <div class="menu-layout">
+                    <button class="btn btn-blue" onclick="startGame('paud')">🐣 PAUD (2 – 6 Tahun)</button>
+                    <button class="btn btn-green" onclick="startGame('sd12')">🏫 SD Kelas 1–2</button>
+                    <button class="btn btn-purple" onclick="startGame('sd34')">🏫 SD Kelas 3–4</button>
+                    <button class="btn btn-yellow" onclick="startGame('sd56')">🏫 SD Kelas 5–6</button>
+                    <button class="btn btn-graw" onclick="showScreen('custom-screen')">⚙️ Mode Custom</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Screen -->
+        <section id="game-screen" class="screen">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <div class="card glass">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span id="question-count" style="font-weight: 700; color: var(--primary-purple);">Soal 1 / 10</span>
+                    <div id="score-display" style="font-weight: 800; color: var(--primary-blue);">Skor: 0</div>
+                </div>
+
+                <div class="question" id="question-text">5 + 5 = ?</div>
+
+                <div class="input-area">
+                    <input type="text" id="answer-input" class="num-input" placeholder="Jawaban..." inputmode="text">
+                    <button class="btn btn-green" onclick="checkAnswer()">Kirim Jawaban 🚀</button>
+                    <button class="btn btn-outline" onclick="skipQuestion()">Lewati Soal ➡️</button>
+                </div>
+
+                <div id="hint-container" class="hint-box">
+                    <span id="hint-text"></span>
+                </div>
+
+                <button class="btn btn-red" onclick="exitGame()" style="margin-top: 8px;">Keluar</button>
+            </div>
+        </section>
+
+        <!-- Custom Mode Screen -->
+        <section id="custom-screen" class="screen">
+            <div class="card glass">
+                <h2>⚙️ Buat Soal Sendiri</h2>
+                <p style="margin-bottom: 20px; opacity: 0.7;">Ayah/Bunda bisa tentukan angkanya sendiri (Max 500)</p>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Angka Pertama:</label>
+                    <input type="number" id="custom-num1" class="num-input" style="font-size: 1.5rem; padding: 15px;"
+                        placeholder="0">
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Pilih Operator:</label>
+                    <select id="custom-operator"
+                        style="width: 100%; padding: 15px; border-radius: 15px; border: 2px solid rgba(0,0,0,0.05); font-family: inherit; font-size: 1rem;">
+                        <option value="+">Tambah (+)</option>
+                        <option value="-">Kurang (-)</option>
+                        <option value="*">Kali (×)</option>
+                        <option value="/">Bagi (÷)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 30px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Angka Kedua:</label>
+                    <input type="number" id="custom-num2" class="num-input" style="font-size: 1.5rem; padding: 15px;"
+                        placeholder="0">
+                </div>
+
+                <button class="btn btn-green" onclick="startCustomGame()">Mainkan! 🎯</button>
+                <button class="btn btn-outline" onclick="showScreen('home-screen')">Kembali</button>
+            </div>
+        </section>
+
+        <!-- Result Screen -->
+        <section id="result-screen" class="screen">
+            <div class="card glass">
+                <h2 style="font-size: 2rem; font-weight: 800; color: var(--primary-purple);">Selesai! 🎉</h2>
+                <div class="result-stat">
+                    <div class="final-score" id="final-score">0</div>
+                    <p style="font-weight: 600; opacity: 0.6; margin-top: -10px;">Total Skor Kamu</p>
+                </div>
+
+                <div class="stat-row">
+                    <span class="stat-label">Benar</span>
+                    <span class="stat-value" id="correct-count" style="color: var(--primary-green);">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Akurasi</span>
+                    <span class="stat-value" id="accuracy-percent">0%</span>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <button class="btn btn-purple" onclick="showScreen('home-screen')">Main Lagi 🔄</button>
+                    <button class="btn btn-outline" onclick="showScreen('home-screen')">Menu Utama 🏠</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Feedback Popups -->
+    <div id="feedback-correct" class="feedback">
+        <div class="feedback-text correct">Hebat! ✨</div>
+    </div>
+    <div id="feedback-wrong" class="feedback">
+        <div class="feedback-text wrong">Coba lagi! 💪</div>
+    </div>
+    <div id="feedback-win" class="feedback">
+        <div class="feedback-text win">Luar Biasa! 🏆</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,386 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet');
+
+:root {
+    --primary-blue: #3A86FF;
+    --primary-yellow: #FFBE0B;
+    --primary-green: #06D6A0;
+    --primary-red: #EF476F;
+    --primary-purple: #8338EC;
+    --white: #FFFFFF;
+    --bg-gradient: linear-gradient(135deg, #F0F7FF 0%, #E0E7FF 100%);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: #2D3436;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header img {
+    width: auto;
+    height: 24px;
+    margin-bottom: 0px;
+    display: block;   
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header h1 {
+ text-align: center;
+}
+
+header p {
+    font-size: 10px;
+    text-align: center;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+/* Glassmorphism Classes */
+.glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+}
+
+/* Animations */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+/* Buttons */
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    padding: 18px 30px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 700;
+    transition: var(--transition);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.btn-blue {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-green {
+    background: var(--primary-green);
+    color: white;
+}
+
+.btn-yellow {
+    background: var(--primary-yellow);
+    color: #333;
+}
+
+.btn-red {
+    background: var(--primary-red);
+    color: white;
+    
+}
+
+.btn-purple {
+    background: var(--primary-purple);
+    color: white;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Cards */
+.card {
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: slideUp 0.6s ease-out;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+header h1 {
+    color: var(--primary-blue);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    background: linear-gradient(to bottom right, var(--primary-blue), var(--primary-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+/* Game Elements */
+.question {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 40px 0;
+    color: #2D3436;
+    letter-spacing: 2px;
+}
+
+.num-input {
+    width: 100%;
+    font-size: 2.5rem;
+    border-radius: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    text-align: center;
+     font-family: "Space Grotesk", sans-serif;
+    margin-bottom: 25px;
+    background: white;
+    transition: var(--transition);
+    font-weight: 700;
+}
+
+.num-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 10px rgba(58, 134, 255, 0.1);
+}
+
+/* Feedback Popups */
+.feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    pointer-events: none;
+    display: none;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.feedback.show {
+    display: block;
+    animation: popIn 0.4s ease-out forwards;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.feedback-text {
+    font-size: 2.2rem;
+    font-weight: 800;
+    padding: 15px 40px;
+    border-radius: 50px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    white-space: nowrap;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.correct {
+    background: var(--primary-green);
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.wrong {
+    background: var(--primary-red);
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.win {
+    background: var(--primary-purple);
+     font-family: "Space Grotesk", sans-serif;
+}
+
+/* Hint Box */
+.hint-box {
+    display: none;
+    background: #FFFBEB;
+    border-left: 8px solid var(--primary-yellow);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 25px 0;
+    text-align: left;
+    font-size: 1.1rem;
+    color: #78350F;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.hint-box.show {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+     font-family: "Space Grotesk", sans-serif;
+}
+
+.formula {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 700;
+    color: var(--primary-purple);
+     font-family: "Space Grotesk", sans-serif;
+}
+
+/* Result Screen */
+.result-stat {
+    margin: 30px 0;
+}
+
+.final-score {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--primary-purple);
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat-label {
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+.stat-value {
+    font-weight: 800;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .question {
+        font-size: 2.5rem;
+    }
+
+    .num-input {
+        font-size: 2rem;
+    }
+
+    .card {
+        padding: 25px;
+    }
+}
